@@ -1,0 +1,104 @@
+<div class="flex flex-col flex-auto min-w-0 h-full p-2 md:p-10">
+  <hubsd-header></hubsd-header>
+  <div class="w-full flex flex-col items-center pt-4 text-center">
+    <span class="text-lg">Nova página</span>
+    <span class="text-md mb-4 max-w-full">
+      Abaixo estão as páginas clonadas por você. Escolha uma para visualizar ou
+      crie uma nova página.
+    </span>
+    <div
+      class="flex flex-col sm:flex-row shrink-0 items-center mt-6 sm:mt-0 sm:ml-4 gap-4"
+    >
+      <button
+        (click)="openPage('manual', 'criar')"
+        mat-flat-button
+        class="bg-gradient-to-r from-custom-purple-start to-custom-purple-end px-14 py-3"
+      >
+        <span class="ml-1 text-white">Clonar página manual</span>
+      </button>
+      <button
+        disabled
+        (click)="openPage('simples', 'criar')"
+        mat-flat-button
+        class="bg-gradient-to-r from-custom-purple-start to-custom-purple-end px-14 py-3"
+      >
+        <span class="ml-1 text-white">Clonar página simples</span>
+        <br />
+        <span class="text-xs ml-1 text-gray-200">Em breve</span>
+      </button>
+    </div>
+  </div>
+  <div class="px-4 sm:px-6 pb-6" *ngIf="data?.rows">
+    <div class="w-full px-0 md:px-20 mt-4">
+      <span class="text-lg">Minhas páginas</span>
+      <div class="w-full h-1 bg-card my-4"></div>
+      <div
+        class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-4"
+      >
+        <div
+          *ngFor="let value of data.rows"
+          class="relative z-1 hover:bg-gray-100 dark:hover:bg-gray-700 items-center justify-center bg-card rounded-md w-full font-bold"
+        >
+          <div class="w-full p-4 grid text-secondary dark:text-white relative">
+            <div
+              class="border-b-2 border-b-primary flex w-full justify-between"
+            >
+              <div class="flex">
+                <mat-icon class="mr-4" [svgIcon]="'uil:application'"></mat-icon>
+                <div class="flex flex-col mb-2">
+                  <span class="text-xs max-w-[18vh] truncate">{{
+                    value.domain
+                  }}</span>
+                  <span class="text-xs max-w-[18vh] truncate">{{
+                    value.user.name
+                  }}</span>
+                </div>
+              </div>
+              <div>
+                <span
+                  class="text-primary cursor-pointer text-sm"
+                  [matMenuTriggerFor]="menu"
+                >
+                  > Acessar
+                </span>
+                <mat-menu #menu="matMenu">
+                  <button
+                    mat-menu-item
+                    (click)="openPage('manual', 'editar', value.id)"
+                  >
+                    <mat-icon [svgIcon]="'mat_outline:edit'"></mat-icon>
+                    <span>Editar</span>
+                  </button>
+                  <button
+                    mat-menu-item
+                    (click)="
+                      actionListener.emit({ action: 'delete', id: value.id })
+                    "
+                  >
+                    <mat-icon [svgIcon]="'mat_outline:delete'"></mat-icon>
+                    <span>Remover</span>
+                  </button>
+                  <button
+                    mat-menu-item
+                    (click)="openPage('visualizar', value.id)"
+                  >
+                    <mat-icon [svgIcon]="'uil:observe'"></mat-icon>
+                    <span>Visualizar</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+            <div class="grid pt-4">
+              <span class="mb-2 text-md">Integrações</span>
+              <div class="flex items-center overflow-hidden">
+                <p class="ml-4 text-md">
+                  {{ value.url }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

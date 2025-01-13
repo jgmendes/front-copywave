@@ -1,0 +1,166 @@
+<section class="p-4 m-auto">
+  <div class="text-center p-4">
+    <h1 class="font-bold text-xl text-primary">Selecione um Plano</h1>
+    <span class="text-md">Escolha o plano que funciona pra você.</span>
+  </div>
+  <div class="text-center mb-10 flex gap-4 justify-center">
+    <button
+      (click)="showStep('month')"
+      [ngStyle]="{
+        'background-color': step ? '#000' : '#ffffff',
+        color: !step ? '#000' : '#ffffff'
+      }"
+      class="rounded-3xl font-bold p-1.5 w-30"
+    >
+      Mês
+    </button>
+    <button
+      (click)="showStep('year')"
+      [ngStyle]="{
+        'background-color': !step ? '#000' : '#ffffff',
+        color: step ? '#000' : '#ffffff'
+      }"
+      class="rounded-3xl font-bold p-1.5 w-30 hidden"
+    >
+      Ano -20% off
+    </button>
+  </div>
+
+  <div
+    class="w-full gap-2 large:max-w-screen-xl large:flex large:mx-auto md:grid grid-cols-1 md:grid-cols-3 md:my-0 my-6"
+  >
+    <div class="w-full bg-card rounded-3xl landing-page-card p-2 h-full">
+      <div class="w-full rounded-xl">
+        <div class="flex flex-col h-full p-4 text-center">
+          <h3 class="font-bold text-lg">Simples</h3>
+          <div class="grid">
+            <h3 class="font-extrabold text-lg">
+              R$ {{ step ? "97,90" : "939,84" }}
+            </h3>
+            <div class="text-center text-primary-600 ml-2" *ngIf="step">
+              <span>por mês</span><br />
+              <span>cobrança mensal</span>
+            </div>
+            <div class="text-center text-primary-600 ml-2" *ngIf="!step">
+              <span>cobrança anual</span>
+            </div>
+          </div>
+          <div class="text-left font-bold">
+            <ul class="flex flex-col gap-2 my-5">
+              <li>✅ Até 5 ofertas clonadas /mês</li>
+              <li>✅ Ofertas/Páginas clonadas com 1 clique</li>
+              <li>✅ Clonagem Simples</li>
+              <li>❌ Clonagem Manual</li>
+              <li>❌ Espionar Anúncios</li>
+              <li>❌ Múltiplos Domínios</li>
+              <li>❌ Camuflagem de Links (Clocker)</li>
+              <li>❌ Suporte via whatsapp</li>
+              <li>❌ Pixel Facebook</li>
+              <li>❌ Pixel TikTok</li>
+              <li>❌ Pixel Kway</li>
+            </ul>
+          </div>
+
+          <button
+            class="w-full p-1 text-sm self-start dark:bg-white text-white font-semibold mr-4 leading-6 px-8 bg-gradient-to-r from-custom-purple-start to-custom-purple-end rounded-md"
+            mat-flat-button
+            (click)="selectPlan('simple')"
+          >
+            <span> SELECIONAR PLANO </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full bg-card rounded-3xl landing-page-card p-2 h-full bg-gradient-to-r from-custom-purple-start to-custom-purple-end md:my-0 my-6"
+    >
+      <div class="sm:bg-bottom bg-cover w-full rounded-xl">
+        <div class="flex flex-col h-full p-4 text-center">
+          <h3 class="font-bold text-lg text-white">Standart</h3>
+          <p
+            class="font-bold text-md mb-4 text-white bg-gradient-to-r from-custom-purple-start to-purple-700 rounded-3xl px-4"
+          >
+            Mais escolhido por nossos usuários!
+          </p>
+          <div class="grid">
+            <h3 class="font-extrabold text-lg text-white">
+              R$ {{ step ? "197,90" : "1227,84" }}
+            </h3>
+            <div class="text-center text-white ml-2" *ngIf="step">
+              <span>por mês</span><br />
+              <span>cobrança mensal</span>
+            </div>
+            <div class="text-center text-white ml-2" *ngIf="!step">
+              <span>cobrança anual</span>
+            </div>
+          </div>
+          <div class="text-left font-bold">
+            <ul class="flex flex-col gap-2 my-5" style="color: #fff;">
+              <li>✅ Até 30 ofertas clonadas /mês</li>
+              <li>✅ Ofertas/Páginas clonadas com 1 clique</li>
+              <li>✅ Clonagem Simples</li>
+              <li>❌ Clonagem Manual</li>
+              <li>✅ Espionar Anúncios</li>
+              <li>❌ Múltiplos Domínios</li>
+              <li>❌ Camuflagem de Links (Clocker)</li>
+              <li>❌ Suporte via whatsapp</li>
+              <li>✅ Pixel Facebook</li>
+              <li>✅ Pixel TikTok</li>
+              <li>✅ Pixel Kway</li>
+            </ul>
+          </div>
+          <button
+            class="w-full p-1 text-sm self-start dark:bg-white text-primary font-semibold mr-4 leading-6 px-8 bg-white rounded-md"
+            mat-flat-button
+            (click)="selectPlan('standard')"
+          >
+            <span> SELECIONAR PLANO </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="w-full bg-card rounded-3xl landing-page-card p-2 h-full md:my-0 my-6"
+    >
+      <div class="w-full rounded-xl">
+        <div class="flex flex-col h-full p-4 text-center">
+          <h3 class="font-bold text-lg">Premium</h3>
+          <div class="grid">
+            <h3 class="font-extrabold text-lg">
+              R$ {{ step ? "247,90" : "1419,84" }}
+            </h3>
+            <div class="text-center text-primary-600 ml-2" *ngIf="step">
+              <span>por mês</span><br />
+              <span>cobrança mensal</span>
+            </div>
+            <div class="text-center text-primary-600 ml-2" *ngIf="!step">
+              <span>cobrança anual</span>
+            </div>
+          </div>
+          <div class="text-left font-bold">
+            <ul class="flex flex-col gap-2 my-5">
+              <li>✅ Até 50 ofertas clonadas /mês</li>
+              <li>✅ Ofertas/Páginas clonadas com 1 clique</li>
+              <li>✅ Clonagem Simples</li>
+              <li>✅ Clonagem Manual</li>
+              <li>✅ Espionar Anúncios</li>
+              <li>✅ Múltiplos Domínios</li>
+              <li>✅ Camuflagem de Links (Clocker)</li>
+              <li>✅ Suporte via whatsapp</li>
+              <li>✅ Pixel Facebook</li>
+              <li>✅ Pixel TikTok</li>
+              <li>✅ Pixel Kway</li>
+            </ul>
+          </div>
+          <button
+            class="w-full p-1 text-sm self-start dark:bg-white text-white font-semibold mr-4 leading-6 px-8 bg-gradient-to-r from-custom-purple-start to-custom-purple-end rounded-md"
+            mat-flat-button
+            (click)="selectPlan('premium')"
+          >
+            <span> SELECIONAR PLANO </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

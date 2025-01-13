@@ -1,0 +1,31 @@
+<div
+  class="flex flex-col sm:flex-row flex-auto items-center sm:items-start p-8 pb-6 sm:pb-8"
+>
+  <ng-container>
+    <div
+      class="text-lg leading-6 font-semibold flex items-center justify-center w-full h-full"
+    >
+      <div *ngIf="!qrCodeUrl" id="paymentBrick_container"></div>
+
+      <div *ngIf="qrCodeUrl" class="flex flex-col items-center">
+        <img
+          [src]="'data:image/png;base64,' + qrCodeUrl"
+          alt="QR Code do PIX"
+          class="qr-code" 
+        />
+
+        <div class="mt-4 text-center">
+          <p>Código do PIX:</p>
+          <p
+            class="font-mono bg-gray-100 p-2 rounded break-words cursor-pointer"
+            (click)="copyPixCode()" 
+            title="Clique para copiar"
+          >
+            {{ pixCode }}
+          </p>
+          <p class="text-gray-500 mt-2">Clique no código para copiar</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

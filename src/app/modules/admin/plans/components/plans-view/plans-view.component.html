@@ -1,0 +1,69 @@
+<div
+  *ngIf="payment && payment.status === 'success'"
+  class="flex flex-col w-full justify-center items-center md:px-40 px-8 pt-40 text-start"
+>
+  <mat-icon class="w-20 h-20" svgIcon="uil:success"></mat-icon>
+  <span class="text-xl pt-6">Pagamento efetuado com sucesso!</span>
+  <p class="text-md">
+    O seu plano foi ativado com sucesso.
+    <br />
+    <span class="text-md font-bold"
+      >Agora você pode visitar o menu "páginas".</span
+    >
+  </p>
+  <p class="pt-8 w-full">
+    <span>Plano ativado: </span>
+    <br />
+    <span class="font-bold">{{ payment.plan }}</span>
+  </p>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-8"
+    (click)="goToRoute('pages')"
+  >
+    <span>Ir para páginas</span>
+  </button>
+</div>
+
+<div
+  *ngIf="payment && payment.status === 'rejected'"
+  class="flex flex-col w-full justify-center items-center md:px-40 px-8 pt-40 text-start"
+>
+  <mat-icon class="w-20 h-20" svgIcon="uil:error"></mat-icon>
+  <span class="text-xl pt-6">Ocorreu um erro com o pagamento!</span>
+  <p class="text-md">
+    Infelizmente não conseguimos proseguir com o pagamento do seu plano, revise
+    suas informações e tente novamente!
+    <br />
+    <span class="text-md font-bold"
+      >Caso o erro persista, entre em contato com o suporte.</span
+    >
+  </p>
+  <p class="pt-8 w-full">
+    <span>Motivo do erro: </span>
+    <br />
+    <span class="font-bold">{{ payment.description }}</span>
+  </p>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="mt-8"
+    (click)="goToRoute('planos')"
+  >
+    <span>Tentar novamente</span>
+  </button>
+</div>
+
+<div
+  *ngIf="payment && payment.status === 'in_process'"
+  class="flex flex-col w-full justify-center items-center md:px-40 px-8 pt-40 text-start"
+>
+  <span class="text-xl pt-6">O pagamento está sendo processado!</span>
+  <p class="text-md">
+    Aguarde alguns instantes enquanto seu pagamento está sendo validado!
+    <br />
+  </p>
+</div>

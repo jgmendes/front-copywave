@@ -1,0 +1,319 @@
+<div class="flex flex-col flex-auto min-w-0 h-full">
+  <hubsd-header
+    class="text-primary"
+    [title]="id ? 'Modificar uma página existente' : 'Clonar página manual'"
+  ></hubsd-header>
+
+  <div class="px-6 pb-6 w-full">
+    <div class="bg-card rounded-md border dark:border-slate-800 p-4">
+      <h2 class="text-lg text-primary">Recomendações para clonagem</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Debitis vitae
+        sequi repellendus eius aliquid. Veniam saepe ea voluptas dolores, iste
+        perferendis esse quo minus velit sequi unde facilis ex blanditiis.
+      </p>
+    </div>
+  </div>
+
+  <div class="px-6 pb-6 w-full">
+    <div class="bg-card rounded-md border dark:border-slate-800 p-4">
+      <h2 class="text-lg text-primary">Preencha os campos:</h2>
+      <br />
+
+      <form [formGroup]="form">
+        <div class="flex">
+          <div class="w-3/4">
+            <mat-form-field class="w-full">
+              <mat-label class="font-bold">Domínio</mat-label>
+              <input
+                matInput
+                formControlName="domain"
+                placeholder="Digite o domínio"
+              />
+              <mat-error *ngIf="form.get('domain').hasError('required')">
+                Campo obrigatório
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  form.get('domain').hasError('invalidUrl') &&
+                  !form.get('domain').hasError('required')
+                "
+              >
+                Domínio inválido
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="flex flex-col w-[20%] items-center">
+            <mat-label class="font-bold">Cookies</mat-label>
+            <input
+              class="input"
+              type="checkbox"
+              id="switch-cookies"
+              (change)="changeCheckBox('cookies')"
+            />
+            <label class="label" for="switch-cookies"></label>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="w-3/4">
+            <mat-form-field class="w-full">
+              <mat-label class="font-bold">Pixel Facebook</mat-label>
+              <input
+                placeholder="https://exemplo.com/imagens/pixel.png"
+                matInput
+                formControlName="facebookPixel"
+              />
+              <mat-error *ngIf="form.get('facebookPixel').hasError('required')">
+                Campo obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="ml-4 flex flex-col justify-center">
+            <mat-label class="font-bold">Ativar</mat-label>
+            <input
+              class="input"
+              type="checkbox"
+              id="switch-facebook"
+              (change)="changeCheckBox('facebookPixel')"
+            />
+            <label class="label" for="switch-facebook"></label>
+          </div>
+        </div>
+
+        <div class="flex">
+          <div class="w-3/4">
+            <mat-form-field class="w-full">
+              <mat-label class="font-bold">Pixel Tiktok</mat-label>
+              <input
+                placeholder="https://exemplo.com/imagens/pixel.png"
+                matInput
+                formControlName="tiktokPixel"
+              />
+              <mat-error *ngIf="form.get('tiktokPixel').hasError('required')">
+                Campo obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="ml-4 flex flex-col justify-center">
+            <mat-label class="font-bold">Ativar</mat-label>
+            <input
+              class="input"
+              type="checkbox"
+              id="switch-tiktok"
+              (change)="changeCheckBox('tiktokPixel')"
+            />
+            <label class="label" for="switch-tiktok"></label>
+          </div>
+        </div>
+
+        <div class="flex">
+          <div class="w-3/4">
+            <mat-form-field class="w-full">
+              <mat-label class="font-bold">Pixel Kwai</mat-label>
+              <input
+                matInput
+                formControlName="kwaiPixel"
+                placeholder="https://exemplo.com/imagens/pixel.png"
+              />
+              <mat-error *ngIf="form.get('kwaiPixel').hasError('required')">
+                Campo obrigatório
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="ml-4 flex flex-col justify-center">
+            <mat-label class="font-bold">Ativar</mat-label>
+            <input
+              class="input"
+              type="checkbox"
+              id="switch-kwai"
+              (change)="changeCheckBox('kwaiPixel')"
+            />
+            <label class="label" for="switch-kwai"></label>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <h2 class="text-lg text-primary">Links da página:</h2>
+          <br />
+
+          <button
+            mat-flat-button
+            class="bg-gradient-to-r from-custom-purple-start to-custom-purple-end"
+          >
+            <span class="ml-1 text-white">+ Adicionar texto</span>
+          </button>
+        </div>
+
+        <mat-form-field class="w-full">
+          <mat-label placeholder="Tipo" class="font-bold">Link</mat-label>
+          <input
+            placeholder="https://minhapagina.com/exemplo"
+            matInput
+            formControlName="url"
+          />
+          <mat-error *ngIf="form.get('url').hasError('required')">
+            Campo obrigatório
+          </mat-error>
+          <mat-error
+            *ngIf="
+              form.get('url').hasError('invalidUrl') &&
+              !form.get('url').hasError('required')
+            "
+          >
+            Link inválido
+          </mat-error>
+        </mat-form-field>
+        <h2 class="text-lg text-primary">Seu Link de checkout:</h2>
+        <mat-form-field class="w-full">
+          <mat-label class="font-bold">Link</mat-label>
+          <input
+            placeholder="https://minhapagina.com/exemplo/checkout"
+            matInput
+            formControlName="checkoutUrl"
+          />
+          <mat-error *ngIf="form.get('checkoutUrl').hasError('required')">
+            Campo obrigatório
+          </mat-error>
+          <mat-error
+            *ngIf="
+              form.get('checkoutUrl').hasError('invalidUrl') &&
+              !form.get('checkoutUrl').hasError('required')
+            "
+          >
+            Link de checkout inválido
+          </mat-error>
+        </mat-form-field>
+
+        <div class="flex justify-between">
+          <h2 class="text-lg text-primary">Substituir textos:</h2>
+          <br />
+
+          <button
+            mat-flat-button
+            class="bg-gradient-to-r from-custom-purple-start to-custom-purple-end"
+            (click)="addNewFieldForm('texts')"
+          >
+            <span class="ml-1 text-white">+ Adicionar elemento</span>
+          </button>
+        </div>
+        <div formArrayName="texts">
+          <div
+            *ngFor="
+              let field of getFieldsFormArray('texts').controls;
+              let i = index
+            "
+          >
+            <div [formGroupName]="i" class="w-full flex gap-x-10">
+              <mat-form-field class="w-full">
+                <mat-label class="font-bold">Texto antigo</mat-label>
+                <textarea
+                  formControlName="current"
+                  placeholder="Digite o texto antigo"
+                  matInput
+                ></textarea>
+                <mat-error *ngIf="field.get('current').hasError('required')">
+                  O texto antigo é obrigatório.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label class="font-bold">Novo texto</mat-label>
+                <textarea
+                  formControlName="replace"
+                  placeholder="Digite o novo texto"
+                  matInput
+                ></textarea>
+                <mat-error *ngIf="field.get('replace').hasError('required')">
+                  O texto novo é obrigatório.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between">
+          <h2 class="text-lg text-primary">Substituir cores:</h2>
+          <button
+            mat-flat-button
+            class="bg-gradient-to-r from-custom-purple-start to-custom-purple-end"
+            (click)="addNewFieldForm('colors')"
+          >
+            <span class="ml-1 text-white">+ Adicionar cor</span>
+          </button>
+        </div>
+        <div formArrayName="colors">
+          <div
+            *ngFor="
+              let button of getFieldsFormArray('colors').controls;
+              let i = index
+            "
+          >
+            <div [formGroupName]="i" class="flex gap-x-10">
+              <mat-form-field class="w-full">
+                <mat-label class="font-bold">Cor antiga</mat-label>
+
+                <input
+                  type="text"
+                  [value]="button.get('current').value"
+                  (input)="button.get('current').value = $event.target.value"
+                  maxlength="7"
+                  matInput
+                />
+                <input
+                  type="color"
+                  id="colorPicker2"
+                  [value]="button.get('current').value"
+                  (input)="button.get('current').value = $event.target.value"
+                />
+              </mat-form-field>
+              <mat-form-field class="w-full">
+                <mat-label class="font-bold">Cor nova</mat-label>
+                <input
+                  type="text"
+                  [value]="button.get('replace').value"
+                  (input)="button.get('replace').value = $event.target.value"
+                  maxlength="7"
+                  matInput
+                />
+                <input
+                  type="color"
+                  id="colorPicker4"
+                  [value]="button.get('replace').value"
+                  (input)="button.get('replace').value = $event.target.value"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-lg text-primary">Excluir elementos:</h2>
+        <mat-form-field class="w-full">
+          <mat-label class="font-bold">Elemento da página</mat-label>
+          <textarea
+            placeholder="Campo obrigatório qual elemento deseja exluir exemplo: Text, image, button"
+            matInput
+            formControlName="hiddenFields"
+          ></textarea>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="flex flex-row gap-6">
+      <button class="w-full mt-6" mat-flat-button [routerLink]="'/paginas'">
+        Cancelar
+      </button>
+      <button
+        class="w-full mt-6"
+        mat-flat-button
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="handleSaveOrUpdate()"
+      >
+        <span *ngIf="!form.disabled">Salvar alterações</span>
+        <mat-progress-spinner
+          *ngIf="form.disabled"
+          [diameter]="24"
+          [mode]="'indeterminate'"
+        ></mat-progress-spinner>
+      </button>
+    </div>
+  </div>
+</div>
